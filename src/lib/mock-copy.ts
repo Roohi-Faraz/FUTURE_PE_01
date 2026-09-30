@@ -13,7 +13,7 @@ const VOICES: Record<string, Voice> = {
   "Repair Service": { noun: "repair service", feel: "get things working again fast", promise: "reliable, affordable repairs", benefits: [["Fast turnaround", "Quick diagnosis and most repairs done the same day."], ["Skilled technicians", "Trained experts who fix it right the first time."], ["Fair pricing", "Upfront quotes with no surprise charges."]], trust: ["Warranty on parts and labour", "Hundreds of successful repairs", "Transparent, upfront quotes"] },
   "Retail Store": { noun: "store", feel: "find exactly what you need", promise: "quality products and helpful service", benefits: [["Great selection", "Carefully chosen products you'll love using."], ["Helpful staff", "Friendly advice to help you choose with confidence."], ["Worth the visit", "See, touch and try before you buy."]], trust: ["Trusted by local shoppers", "Easy exchanges and returns", "Genuine, quality-checked products"] },
 };
-VOICES.Other = { noun: "business", feel: "get the service you deserve", promise: "dependable, friendly service", benefits: [["Experienced team", "People who know their craft and care about the details."], ["Customer-first", "We listen, advise honestly and deliver on our word."], ["Local & reliable", "Right here in your neighbourhood when you need us."]], trust: ["Trusted by local customers", "Clear, fair pricing", "Friendly, responsive support"] };
+VOICES['Other'] = { noun: "business", feel: "get the service you deserve", promise: "dependable, friendly service", benefits: [["Experienced team", "People who know their craft and care about the details."], ["Customer-first", "We listen, advise honestly and deliver on our word."], ["Local & reliable", "Right here in your neighbourhood when you need us."]], trust: ["Trusted by local customers", "Clear, fair pricing", "Friendly, responsive support"] };
 
 const TONE_OPENERS: Record<string, string[]> = {
   Professional: ["Trusted", "Reliable", "Expert"],
@@ -35,13 +35,13 @@ const GOAL_CTAS: Record<string, [string, string, string][]> = {
 const pick = <T,>(a: T[], seed: number) => a[Math.abs(seed) % a.length]!;
 
 export function mockHomepage(i: BusinessInput, seed = 0): HomepageCopy {
-  const v = VOICES[i.businessType] ?? VOICES.Other!;
-  const opener = pick(TONE_OPENERS[i.tone] ?? TONE_OPENERS.Friendly!, seed);
+  const v = VOICES[i.businessType] ?? VOICES['Other']!;
+  const opener = pick(TONE_OPENERS[i.tone] ?? TONE_OPENERS['Friendly']!, seed);
   const loc = i.location || "your area";
   const headlines = [
     `${opener} ${v.noun} in ${loc}`,
     `Helping ${loc} ${v.feel}`,
-    `${v.promise[0].toUpperCase()}${v.promise.slice(1)}, right here in ${loc}`,
+    `${v.promise.charAt(0).toUpperCase()}${v.promise.slice(1)}, right here in ${loc}`,
   ];
   return {
     headline: pick(headlines, seed),
@@ -54,11 +54,11 @@ export function mockHomepage(i: BusinessInput, seed = 0): HomepageCopy {
 }
 
 export function mockServices(i: BusinessInput, seed = 0): ServiceCopy[] {
-  const v = VOICES[i.businessType] ?? VOICES.Other!;
+  const v = VOICES[i.businessType] ?? VOICES['Other']!;
   const list = i.services.split(/,|\n/).map((s) => s.trim()).filter(Boolean);
   const leads = ["Enjoy", "Experience", "Discover"];
   return list.map((name, idx) => ({
-    name: name[0].toUpperCase() + name.slice(1),
+    name: name.charAt(0).toUpperCase() + name.slice(1),
     description: `${pick(leads, seed + idx)} ${name.toLowerCase()} delivered by our team at ${i.businessName}, with the care and attention ${i.targetCustomers.toLowerCase()} expect.`,
     benefit: `You get ${v.promise} and the confidence that it's done right — ${i.usp.toLowerCase()}.`,
   }));

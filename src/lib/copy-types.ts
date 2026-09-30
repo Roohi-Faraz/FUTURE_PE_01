@@ -76,7 +76,7 @@ Primary Goal: ${i.goal}
 
 ${want}
 
-Industry guidance: ${TYPE_GUIDANCE[i.businessType] ?? TYPE_GUIDANCE.Other!}
+Industry guidance: ${TYPE_GUIDANCE[i.businessType] ?? TYPE_GUIDANCE['Other']!}
 
 Requirements:
 - Keep the language simple and natural.

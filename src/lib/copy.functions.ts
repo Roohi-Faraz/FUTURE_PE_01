@@ -36,12 +36,12 @@ export type GenerateResult = { ok: true; data: Partial<GeneratedCopy>; source: "
 export const generateCopy = createServerFn({ method: "POST" })
   .inputValidator((d) => inputSchema.parse(d))
   .handler(async ({ data }): Promise<GenerateResult> => {
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env['LOVABLE_API_KEY'];
     if (!key) return { ok: false, error: "no_key" };
     const props: Record<string, unknown> = {};
-    if (!data.section || data.section === "homepage") props.homepage = homepageSchema;
-    if (!data.section || data.section === "services") props.services = servicesSchema;
-    if (!data.section || data.section === "ctas") props.ctas = ctasSchema;
+    if (!data.section || data.section === "homepage") props['homepage'] = homepageSchema;
+    if (!data.section || data.section === "services") props['services'] = servicesSchema;
+    if (!data.section || data.section === "ctas") props['ctas'] = ctasSchema;
     try {
       const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
