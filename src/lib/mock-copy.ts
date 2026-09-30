@@ -32,11 +32,11 @@ const GOAL_CTAS: Record<string, [string, string, string][]> = {
   "Generate Leads": [["Request a quote", "Get your free consultation", "Get started free"], ["Make an enquiry", "See what we can do for you", "Request a callback"], ["Contact", "Let's talk about your goals", "Contact us"]],
 };
 
-const pick = <T,>(a: T[], seed: number) => a[Math.abs(seed) % a.length];
+const pick = <T,>(a: T[], seed: number) => a[Math.abs(seed) % a.length]!;
 
 export function mockHomepage(i: BusinessInput, seed = 0): HomepageCopy {
-  const v = VOICES[i.businessType] ?? VOICES.Other;
-  const opener = pick(TONE_OPENERS[i.tone] ?? TONE_OPENERS.Friendly, seed);
+  const v = VOICES[i.businessType] ?? VOICES.Other!;
+  const opener = pick(TONE_OPENERS[i.tone] ?? TONE_OPENERS.Friendly!, seed);
   const loc = i.location || "your area";
   const headlines = [
     `${opener} ${v.noun} in ${loc}`,
@@ -54,7 +54,7 @@ export function mockHomepage(i: BusinessInput, seed = 0): HomepageCopy {
 }
 
 export function mockServices(i: BusinessInput, seed = 0): ServiceCopy[] {
-  const v = VOICES[i.businessType] ?? VOICES.Other;
+  const v = VOICES[i.businessType] ?? VOICES.Other!;
   const list = i.services.split(/,|\n/).map((s) => s.trim()).filter(Boolean);
   const leads = ["Enjoy", "Experience", "Discover"];
   return list.map((name, idx) => ({
@@ -65,7 +65,7 @@ export function mockServices(i: BusinessInput, seed = 0): ServiceCopy[] {
 }
 
 export function mockCtas(i: BusinessInput, seed = 0): CtaCopy[] {
-  const set = GOAL_CTAS[i.goal] ?? GOAL_CTAS["Get More Enquiries"];
+  const set = GOAL_CTAS[i.goal] ?? GOAL_CTAS["Get More Enquiries"]!;
   const rotated = [...set.slice(seed % set.length), ...set.slice(0, seed % set.length)];
   return rotated.map(([purpose, heading, button]) => ({
     purpose,
