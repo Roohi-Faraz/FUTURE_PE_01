@@ -139,7 +139,7 @@ function Index() {
             <p className="mt-2 text-xs text-muted-foreground">AI-powered website copy for local businesses</p>
           </div>
           <div className="text-xs text-muted-foreground sm:text-right">
-            <p className="font-medium text-foreground/70">AI-powered website copy for local businesses</p>
+
             <p className="mt-1">
               <a href="https://github.com/Roohi-Faraz/pixel-perfect" target="_blank" rel="noreferrer" className="underline-offset-2 hover:text-foreground hover:underline">GitHub</a>
               {" · "}© {new Date().getFullYear()} LocalBiz AI
