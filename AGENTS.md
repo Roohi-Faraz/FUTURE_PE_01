@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture
+- Copy generation runs in a server function (src/lib/copy.functions.ts) calling the AI gateway with a structured tool schema; the client falls back to a local demo generator (src/lib/mock-copy.ts) on any failure so the UI always works.
