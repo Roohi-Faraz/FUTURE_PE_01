@@ -210,7 +210,7 @@ export function CopyGenerator() {
   );
 }
 
-function Field({ label, error, hint, children }: { label: string; error?: string; hint?: string; children: React.ReactNode }) {
+function Field({ label, error, hint, children }: { label: string; error?: string | undefined; hint?: string; children: React.ReactNode }) {
   return (
     <label className="block">
       <span className="label-cap">{label}{hint && <span className="ml-1 normal-case tracking-normal text-muted-foreground/70">· {hint}</span>}</span>
