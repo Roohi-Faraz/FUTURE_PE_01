@@ -141,7 +141,7 @@ function Index() {
           <div className="text-xs text-muted-foreground sm:text-right">
             <p>Future Interns – Prompt Engineering Task 1</p>
             <p className="mt-1">
-              <a href="https://github.com/" target="_blank" rel="noreferrer" className="underline-offset-2 hover:text-foreground hover:underline">GitHub</a>
+              <a href="https://github.com/Roohi-Faraz/pixel-perfect" target="_blank" rel="noreferrer" className="underline-offset-2 hover:text-foreground hover:underline">GitHub</a>
               {" · "}© {new Date().getFullYear()} LocalBiz AI
             </p>
           </div>
